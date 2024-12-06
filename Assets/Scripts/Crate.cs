@@ -25,7 +25,6 @@ public class Crate : MonoBehaviour {
                 conveyor = temp;
                 normal = c.GetContact(0).normal;
                 transform.up = normal;
-                GetComponent<Rigidbody>().isKinematic = false;
                 
             }
 
