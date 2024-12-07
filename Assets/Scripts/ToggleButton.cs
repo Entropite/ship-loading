@@ -10,24 +10,27 @@ public enum ButtonType {
 public class ToggleButton : MonoBehaviour {
     public TextMeshPro tmp;
     public ButtonType type;
+    public AudioSource audio_source;
 
     private void OnTriggerEnter(Collider other) {
         if (type == ButtonType.CONVEYOR) {
             GameObject[] conveyors = GameObject.FindGameObjectsWithTag("Conveyor");
             bool status = false;
             foreach (GameObject conveyor in conveyors) {
-                Conveyor c = conveyor.GetComponent<Conveyor>();
+                Conveyor c         = conveyor.GetComponent<Conveyor>();
                 c.movement_enabled = !c.movement_enabled;
-                status = c.movement_enabled;
+                status             = c.movement_enabled;
             }
+
+            if (status) audio_source.Play();
+            else        audio_source.Stop();
 
             tmp.text = "Conveyor status: " + (status ? "ON" : "OFF");
         } else if (type == ButtonType.SPAWNER) {
-            GameObject obj = GameObject.FindGameObjectWithTag("Spawner");
-            CrateSpawner spawner = obj.GetComponent<CrateSpawner>();
+            GameObject obj           = GameObject.FindGameObjectWithTag("Spawner");
+            CrateSpawner spawner     = obj.GetComponent<CrateSpawner>();
             spawner.spawning_enabled = !spawner.spawning_enabled;
-
-            tmp.text = "Freight source: " + (spawner.spawning_enabled ? "ON" : "OFF");
+            tmp.text                 = "Freight source: " + (spawner.spawning_enabled ? "ON" : "OFF");
         }
     }
 }

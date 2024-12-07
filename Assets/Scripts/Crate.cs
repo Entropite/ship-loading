@@ -6,14 +6,14 @@ public class Crate : MonoBehaviour {
     Conveyor conveyor;
     Conveyor prevConveyor;
 
-    void Start() {
-
-    }
-
     Vector3 normal;
     void FixedUpdate() {
         if (conveyor != null && conveyor.movement_enabled) {
             transform.Translate(conveyor.direction * 0.1f);
+        }
+
+        if (transform.position.y < -10.0f) {
+            Destroy(gameObject);
         }
     }
 
@@ -25,10 +25,7 @@ public class Crate : MonoBehaviour {
                 conveyor = temp;
                 normal = c.GetContact(0).normal;
                 transform.up = normal;
-                
             }
-
         }
     }
-
 }
