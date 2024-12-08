@@ -10,6 +10,11 @@ public class Crate : MonoBehaviour {
     ConveyorData conveyor;
     ConveyorData prevConveyor;
 
+    private void Start() {
+        conveyor.has_left_collider     = true;
+        prevConveyor.has_left_collider = true;
+    }
+
     Vector3 normal;
     void FixedUpdate() {
         if (conveyor.has_left_collider && prevConveyor.has_left_collider) {
@@ -39,9 +44,8 @@ public class Crate : MonoBehaviour {
                 transform.up                   = normal;
 
                 if (prevConveyor.component) {
-                    transform.Translate(prevConveyor.component.direction * 0.19f);
+                    transform.Translate(prevConveyor.component.direction * 0.5f);
                 }
-                //transform.Translate(conveyor.component.direction * 0.19f);
             }
         }
     }
