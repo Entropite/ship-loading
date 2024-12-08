@@ -11,7 +11,7 @@ public class Ship : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision c) {
         if (c.gameObject.CompareTag("Crate")) {
-            capacity += c.gameObject.transform.localScale.x * 1.5f;
+            capacity += c.gameObject.transform.localScale.x * 2.5f;
             t.text = "Ship: " + capacity.ToString("0.00") + "%";
             Destroy(c.gameObject);
         }

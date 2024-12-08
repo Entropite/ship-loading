@@ -9,7 +9,7 @@ public class Crate : MonoBehaviour {
     Vector3 normal;
     void FixedUpdate() {
         if (conveyor != null && conveyor.movement_enabled) {
-            transform.Translate(conveyor.direction * 0.1f);
+            transform.Translate(conveyor.direction * 0.08f);
         }
 
         if (transform.position.y < -10.0f) {
